@@ -17,7 +17,7 @@ const IndividualJob = () => {
   const [appTimeline, setAppTimeline] = useState<timeLineProps>()
   const { id } = useParams()
   const navigate = useRouter()
-  const { usertoken } = useAuthContext()
+  const { usertoken, refetchJobs } = useAuthContext()
 
   const fetchIndividualHandle = async () => {
     try {
@@ -63,13 +63,19 @@ const IndividualJob = () => {
         'Are you sure you want to delete this job',
       )
       if (!userConfirmation) {
-        return
+        return null
       }
       if (!usertoken) {
-        return undefined
+        return null
       }
+
       const result = await deleteJob({ id, token: usertoken })
-      console.log('Result of deleting the job', result)
+      if (!result) {
+        toast.error('Job deletion failed')
+      }
+
+      await refetchJobs()
+      navigate.push('/dashboard')
       toast.success('Job Deletion Successful')
     } catch (error) {
       console.log('Error while deleting the job with', error)

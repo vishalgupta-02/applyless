@@ -20,14 +20,12 @@ const Login = () => {
     e.preventDefault()
     try {
       const userLogged = await loginUser({ email, password })
-      console.log('User Data ', userLogged)
       if (userLogged.token) {
         setUsertoken(userLogged.token)
       } else {
         toast.error('No token received from server')
       }
     } catch (error) {
-      console.error(error || 'Error while login')
       localStorage.clear() // why keep the empty value in localStorage
       toast.error('Error occurred while logging in')
     }

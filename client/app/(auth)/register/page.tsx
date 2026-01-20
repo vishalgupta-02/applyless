@@ -20,7 +20,6 @@ const Login = () => {
     e.preventDefault()
     try {
       const userRegistered = await registerUser({ email, password, name })
-      console.log('User Data ', userRegistered)
       setUser(userRegistered)
       if (!userRegistered) {
         navigate.push('/register')

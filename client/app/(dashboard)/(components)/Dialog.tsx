@@ -37,6 +37,7 @@ const Dialog = () => {
     setAddJobDialogOpen,
     editJob,
     selectedJob,
+    refetchJobs,
   } = useAuthContext()
 
   const [company, setCompany] = React.useState<string>(
@@ -102,7 +103,10 @@ const Dialog = () => {
         navigate.push('/dashboard')
         return
       }
-      navigate.push('/dashboard')
+
+      await refetchJobs()
+      setAddJobDialogOpen(false)
+      toast.success('Job created successfully')
     } catch (error) {
       toast.error('Error creating new job')
     }
@@ -129,7 +133,13 @@ const Dialog = () => {
         jobId: selectedJob?._id,
         jobData: jobData,
       })
+      if (!result) {
+        navigate.push('/dashboard')
+        toast.error('Error while editing')
+      }
 
+      await refetchJobs()
+      setAddJobDialogOpen(false)
       toast.success('Editing the job successful')
     } catch (error) {
       toast.error('Error creating new job')
@@ -189,11 +199,11 @@ const Dialog = () => {
           <div className="flex justify-between items-center my-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="cursor-pointer w-full max-w-48 text-white">
+                <Button className="bg-blue-700 hover:cursor-pointer hover:bg-blue-600 px-8 py-3 font-semibold shadow-[0px_0px_4px_2px_rgba(255,255,225,0.2)_inset] text-shadow-sm text-shadow-white/10 ring ring-white/20">
                   {currentStatus || 'Current'}
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48">
+              <DropdownMenuContent>
                 <DropdownMenuItem onClick={() => setCurrentStatus('Wishlist')}>
                   Wishlist
                 </DropdownMenuItem>
@@ -219,11 +229,11 @@ const Dialog = () => {
             </DropdownMenu>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="cursor-pointer w-full max-w-48">
+                <Button className="bg-blue-700 hover:cursor-pointer hover:bg-blue-600 px-8 py-3 font-semibold shadow-[0px_0px_4px_2px_rgba(255,255,225,0.2)_inset] text-shadow-sm text-shadow-white/10 ring ring-white/20">
                   {location || 'Location'}
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48">
+              <DropdownMenuContent>
                 <DropdownMenuItem onClick={() => setLocation('Remote')}>
                   Remote
                 </DropdownMenuItem>
@@ -274,11 +284,14 @@ const Dialog = () => {
           </div>
           <div className="flex justify-between items-center my-4">
             {!editJob && (
-              <Button className="w-full max-w-56" onClick={clearAllFields}>
+              <Button
+                className="bg-gray-700 hover:cursor-pointer hover:bg-gray-600 px-8 py-3 font-semibold shadow-[0px_0px_4px_2px_rgba(255,255,225,0.2)_inset] text-shadow-sm text-shadow-white/10 ring ring-white/20"
+                onClick={clearAllFields}
+              >
                 Clear All
               </Button>
             )}
-            <Button className="w-full max-w-56 bg-[#3B82F6] cursor-pointer">
+            <Button className="bg-blue-700 hover:cursor-pointer hover:bg-blue-600 px-8 py-3 font-semibold shadow-[0px_0px_4px_2px_rgba(255,255,225,0.2)_inset] text-shadow-sm text-shadow-white/10 ring ring-white/20">
               {editJob === true ? 'Edit' : 'Submit'}
             </Button>
           </div>

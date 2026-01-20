@@ -21,10 +21,8 @@ const createJob = async (req, res) => {
     }
 
     const token = req.user
-    console.log(token)
 
     const user = await userModel.findById(token.id)
-    console.log('User in jobs Controller', user)
     if (!user) {
       return res.status(400).json({ success: false, message: 'No User Found' })
     }
@@ -123,15 +121,11 @@ const changeJob = async (req, res) => {
       salary,
     }
 
-    console.log('Changed in job', changedJob)
-
     const updatedJob = await jobApplicationModel.findByIdAndUpdate(
       jobId,
       changedJob,
       { new: true },
     )
-
-    console.log('See the change in job updation', updatedJob)
 
     if (!updatedJob) {
       return res
@@ -191,11 +185,7 @@ const changeJobStatus = async (req, res) => {
 
     const { id } = req.params
 
-    console.log('Current job with id', id)
-
     const currentInfo = await jobApplicationModel.findById(id)
-
-    console.log('Current info of the job', currentInfo)
 
     if (!currentInfo) {
       return res
@@ -255,7 +245,6 @@ const fetchSingleJob = async (req, res) => {
     const { id } = req.params
 
     const requestedJob = await jobApplicationModel.findById(id)
-    // console.log(`Requested Job with id: ${id}`, requestedJob)
     if (!requestedJob) {
       return res.status(404).json({ success: false, message: 'Job not found' })
     }

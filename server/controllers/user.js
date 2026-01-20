@@ -69,7 +69,6 @@ const loginUser = async (req, res) => {
     }
 
     const user = await userModel.findOne({ email })
-    console.log('Id is', user)
     if (!user) {
       return res.status(404).json({ success: false, message: 'User not found' })
     }
@@ -85,7 +84,6 @@ const loginUser = async (req, res) => {
     }
 
     const loginToken = await generateToken(user._id)
-    console.log('Login Token', loginToken)
     if (!loginToken) {
       return res
         .status(500)

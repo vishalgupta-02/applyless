@@ -1,7 +1,6 @@
 'use client'
 
 import JobCard from '../(components)/JobCard'
-import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { useAuthContext } from '@/store/AuthContext'
 import { useEffect } from 'react'
@@ -17,7 +16,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!usertoken) {
-      toast.error('Not Authenticated')
       navigate.push('/login')
     }
   }, [usertoken, navigate])

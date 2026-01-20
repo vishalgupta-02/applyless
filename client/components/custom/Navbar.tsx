@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useAuthContext } from '@/store/AuthContext'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import { toast } from 'sonner'
 
 const Navbar = () => {
   const { usertoken, logout } = useAuthContext()
@@ -34,7 +35,11 @@ const Navbar = () => {
           </Button>
           <Button
             className="bg-blue-700 hover:cursor-pointer hover:bg-red-600 px-8 py-3 font-semibold shadow-[0px_0px_4px_2px_rgba(255,255,225,0.2)_inset] text-shadow-sm text-shadow-white/10 ring ring-white/20"
-            onClick={logout}
+            onClick={() => {
+              toast.success('Logged out successfully')
+              logout()
+              navigate.push('/login')
+            }}
           >
             Log Out
           </Button>
@@ -79,7 +84,9 @@ const Navbar = () => {
                 <Button
                   className="bg-blue-700 hover:cursor-pointer hover:bg-red-600 px-8 py-3 font-semibold shadow-[0px_0px_4px_2px_rgba(255,255,225,0.2)_inset] text-shadow-sm text-shadow-white/10 ring ring-white/20 w-full"
                   onClick={() => {
+                    toast.success('Logged out successfully')
                     logout()
+                    navigate.push('/login')
                     setOpen(false)
                   }}
                 >

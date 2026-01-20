@@ -17,6 +17,7 @@ interface AuthContextType {
   setSelectedJob: (job: any) => void
   newStatus: string
   setNewStatus: (value: string) => void
+  refetchJobs: () => Promise<void>
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -67,6 +68,16 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     loadJobs()
   }, [userToken, navigate])
 
+  const refetchJobs = async (): Promise<void> => {
+    if (!userToken) return
+    try {
+      const response = await fetchJob(userToken)
+      setJobs(response.allJobs)
+    } catch (error) {
+      console.error('Error while refetching jobs', error)
+    }
+  }
+
   const value: AuthContextType = {
     usertoken: userToken,
     setUsertoken: setUserTokenWithStorage,
@@ -80,6 +91,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     setSelectedJob: setSelectedJob,
     newStatus: newStatus,
     setNewStatus: setNewStatus,
+    refetchJobs: refetchJobs,
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

@@ -32,8 +32,13 @@ const JobCard = ({
   description,
 }: jobCardTypes) => {
   const navigate = useRouter()
-  const { usertoken, setEditJob, setAddJobDialogOpen, setSelectedJob } =
-    useAuthContext()
+  const {
+    usertoken,
+    setEditJob,
+    setAddJobDialogOpen,
+    setSelectedJob,
+    refetchJobs,
+  } = useAuthContext()
   const [localStatus, setLocalStatus] = useState(currentStatus)
 
   const changeJobStatus = async (newStatus: string) => {
@@ -77,7 +82,7 @@ const JobCard = ({
       if (!result) {
         toast.error('Failed to delete job')
       }
-      navigate.push('/dashboard')
+      await refetchJobs()
       toast.success('Job Deletion Successful')
     } catch (error) {
       console.log('Error while deleting the job with', error)
