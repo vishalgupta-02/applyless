@@ -12,7 +12,11 @@ await database()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(cors({ origin: ['http://localhost:3000'] }))
+app.use(
+  cors({
+    origin: ['http://localhost:3000', 'https://chrono-rust.vercel.app/'],
+  }),
+)
 
 app.use('/api/v1/user', userRouter)
 app.use('/api/v1/job', jobsRouter)
