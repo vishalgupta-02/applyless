@@ -22,12 +22,11 @@ const Dashboard = () => {
     }
   }, [usertoken, navigate])
 
-  if (!usertoken) {
-    return <div className="w-full mx-auto px-24 py-4 bg-white min-h-screen" />
-  }
-
   return (
-    <section className="w-full mx-auto px-24 py-4 relative bg-white">
+    <section
+      className="w-full mx-auto px-24 py-4 relative bg-white"
+      suppressHydrationWarning
+    >
       <div className="flex justify-between items-center px-4">
         <div className="space-y-1">
           <h1 className="text-xl font-semibold">Dashboard</h1>
@@ -46,7 +45,7 @@ const Dashboard = () => {
         </Button>
       </div>
       <div className="grid grid-cols-1 gap-4 px-4 py-2 mt-4">
-        {jobs != null ? (
+        {jobs && jobs.length > 0 ? (
           jobs.map((job: jobCardTypes) => (
             <div
               key={job._id}
@@ -69,7 +68,7 @@ const Dashboard = () => {
             </div>
           ))
         ) : (
-          <div>
+          <div className="w-full max-h-full h-screen flex justify-center items-center">
             <p className="text-2xl">
               No jobs yet. Start tracking your applications!
             </p>

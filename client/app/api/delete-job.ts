@@ -8,10 +8,8 @@ const deleteJob = async ({ id, token }: { id: string; token: string }) => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     )
-
-    console.log('Response in delete api call', response)
 
     const data = response
 

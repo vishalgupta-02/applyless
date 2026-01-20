@@ -57,8 +57,6 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
       if (!userToken) return
       try {
         const response = await fetchJob(userToken)
-        console.log('USer Token in AuthContext', userToken)
-        console.log('Response from FetchJob', response)
         setJobs(response.allJobs)
         navigate.push('/dashboard')
       } catch (error) {

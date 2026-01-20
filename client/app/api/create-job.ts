@@ -9,7 +9,6 @@ const createNewJob = async ({
   userData: formDataTypes
 }) => {
   try {
-    console.log('User Data in api calling', userData)
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/job/create-job`,
       {
@@ -20,7 +19,7 @@ const createNewJob = async ({
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
+      },
     )
 
     const data = response.data

@@ -50,7 +50,6 @@ const JobCard = ({
         status: newStatus,
       })
 
-      console.log('Result in changing job status', result)
       if (result.success) {
         setLocalStatus(newStatus)
         toast.success('Job status change successful')
@@ -59,7 +58,6 @@ const JobCard = ({
         return
       }
     } catch (error) {
-      console.log('Error in changing job status', error)
       toast.error('Error changing job status')
     }
   }
@@ -76,7 +74,10 @@ const JobCard = ({
         return undefined
       }
       const result = await deleteJob({ id, token: usertoken })
-      console.log('Result of deleting the job', result)
+      if (!result) {
+        toast.error('Failed to delete job')
+      }
+      navigate.push('/dashboard')
       toast.success('Job Deletion Successful')
     } catch (error) {
       console.log('Error while deleting the job with', error)

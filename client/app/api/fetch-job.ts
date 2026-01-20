@@ -2,7 +2,6 @@ import axios from 'axios'
 
 const fetchJob = async (token: string) => {
   try {
-    console.log('Token from fetchJob', token.toString())
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/job/jobs`,
       {
