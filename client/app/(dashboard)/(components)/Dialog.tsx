@@ -40,18 +40,18 @@ const Dialog = () => {
   } = useAuthContext()
 
   const [company, setCompany] = React.useState<string>(
-    selectedJob?.company || ''
+    selectedJob?.company || '',
   )
   const [title, setTitle] = React.useState<string>(selectedJob?.title || '')
   const [currentStatus, setCurrentStatus] = React.useState<string>(
-    selectedJob?.currentStatus || ''
+    selectedJob?.currentStatus || '',
   )
   const [description, setDescription] = React.useState<string>(
-    selectedJob?.description || ''
+    selectedJob?.description || '',
   )
   const [jobUrl, setJobUrl] = React.useState<string>(selectedJob?.jobUrl || '')
   const [location, setLocation] = React.useState<string>(
-    selectedJob?.location || ''
+    selectedJob?.location || '',
   )
   const [notes, setNotes] = React.useState<string>(selectedJob?.notes || '')
   const [salary, setSalary] = React.useState<string>(selectedJob?.salary || '')
@@ -68,7 +68,7 @@ const Dialog = () => {
   }
 
   const submitHandler = async (
-    e: React.FormEvent<HTMLFormElement>
+    e: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault()
     try {
@@ -92,14 +92,11 @@ const Dialog = () => {
         !body.notes ||
         !body.salary
       ) {
-        console.log('PLease fill all the fields')
         toast.error('All fields are required')
         return
       }
-      console.log('Form data before submitting the form', body)
       const result = await createNewJob({ token: usertoken, userData: body })
 
-      console.log('Result after ', result)
       if (!result) {
         toast.error('New Job Creation Failed')
         navigate.push('/dashboard')
@@ -107,13 +104,12 @@ const Dialog = () => {
       }
       navigate.push('/dashboard')
     } catch (error) {
-      console.log('Error while submitting form', error)
       toast.error('Error creating new job')
     }
   }
 
   const editHandler = async (
-    e: React.FormEvent<HTMLFormElement>
+    e: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault()
     try {
@@ -128,24 +124,20 @@ const Dialog = () => {
         salary: salary,
       }
 
-      console.log('Editing the job details', jobData)
-      console.log('Selected Job ID', selectedJob?._id)
       const result = await editExistingJob({
         token: usertoken,
         jobId: selectedJob?._id,
         jobData: jobData,
       })
 
-      console.log('Result from editing job', result)
       toast.success('Editing the job successful')
     } catch (error) {
-      console.log('Error while submitting form', error)
       toast.error('Error creating new job')
     }
   }
 
   const submissionHandler = async (
-    e: React.FormEvent<HTMLFormElement>
+    e: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     if (editJob) {
       editHandler(e)

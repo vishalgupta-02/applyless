@@ -17,14 +17,13 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!usertoken) {
-      console.log('Not Authenticated')
       toast.error('Not Authenticated')
       navigate.push('/login')
     }
   }, [usertoken, navigate])
 
   if (!usertoken) {
-    return
+    return <div className="w-full mx-auto px-24 py-4 bg-white min-h-screen" />
   }
 
   return (
@@ -70,13 +69,11 @@ const Dashboard = () => {
             </div>
           ))
         ) : (
-          <>
-            <div>
-              <p className="text-2xl">
-                No jobs yet. Start tracking your applications!
-              </p>
-            </div>
-          </>
+          <div>
+            <p className="text-2xl">
+              No jobs yet. Start tracking your applications!
+            </p>
+          </div>
         )}
       </div>
 

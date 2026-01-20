@@ -7,7 +7,7 @@ import PageLoader from '@/components/custom/PageLoader'
 export default function Home() {
   return (
     <div>
-      <PageLoader delay={2000} />
+      <PageLoader delay={1000} />
       <Hero />
       <Features />
     </div>
