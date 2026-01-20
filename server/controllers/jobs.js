@@ -128,7 +128,7 @@ const changeJob = async (req, res) => {
     const updatedJob = await jobApplicationModel.findByIdAndUpdate(
       jobId,
       changedJob,
-      { new: true }
+      { new: true },
     )
 
     console.log('See the change in job updation', updatedJob)
@@ -215,7 +215,7 @@ const changeJobStatus = async (req, res) => {
       $push: {
         timeline: {
           status: updatedStatus,
-          date: new Date(),
+          date: new Date(Date.now()),
         },
       },
     }
@@ -223,7 +223,7 @@ const changeJobStatus = async (req, res) => {
     const changedInfo = await jobApplicationModel.findByIdAndUpdate(
       id,
       changesDone,
-      { new: true }
+      { new: true },
     )
 
     if (!changedInfo) {
@@ -243,4 +243,41 @@ const changeJobStatus = async (req, res) => {
   }
 }
 
-export { getAllJobs, createJob, changeJob, deleteJob, changeJobStatus }
+const fetchSingleJob = async (req, res) => {
+  try {
+    const { user } = req
+    if (!user) {
+      return res
+        .status(403)
+        .json({ success: false, message: 'Forbidden, User Not Allowed' })
+    }
+
+    const { id } = req.params
+
+    const requestedJob = await jobApplicationModel.findById(id)
+    // console.log(`Requested Job with id: ${id}`, requestedJob)
+    if (!requestedJob) {
+      return res.status(404).json({ success: false, message: 'Job not found' })
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Job Found Successfully',
+      requestedJob,
+    })
+  } catch (error) {
+    console.log('Error while fetching individual job', error)
+    res
+      .status(500)
+      .json({ success: false, message: 'Error fetching individual job' })
+  }
+}
+
+export {
+  getAllJobs,
+  createJob,
+  changeJob,
+  deleteJob,
+  changeJobStatus,
+  fetchSingleJob,
+}

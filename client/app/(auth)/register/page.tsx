@@ -36,20 +36,20 @@ const Login = () => {
   }
 
   return (
-    <section className="w-full mx-auto px-24 py-12">
+    <section className="w-full mx-auto lg:px-24 lg:py-12 py-4 md:px-16 px-8">
       <div className="w-full flex justify-center items-center">
         <form
           onSubmit={(e) => userRegister(e)}
-          className="w-full max-w-lg flex flex-col justify-center items-center gap-4 border border-gray-500 px-12 py-8 rounded-xl"
+          className="w-full max-w-lg flex flex-col justify-center items-center gap-4 border border-gray-500 lg:px-12 lg:py-8 md:px-6 md:py-6 px-4 py-4 rounded-xl"
         >
           <div className="w-full text-left space-y-1">
-            <h1 className="text-2xl font-bold hover:text-gray-600">
+            <h1 className="md:text-2xl text-xl font-bold hover:text-gray-600">
               Sign Up Form
             </h1>
-            <p className="text-sm font-normal">New to Chrono?</p>
+            <p className="md:text-sm text-xs font-normal">New to Chrono?</p>
           </div>
           <div className="w-full space-y-1">
-            <Label htmlFor="name" className="text-md">
+            <Label htmlFor="name" className="md:text-md text-xs">
               Name
             </Label>
             <Input
@@ -57,11 +57,11 @@ const Login = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="outline-none w-full max-w-xl focus-visible:ring-0 px-4 py-2 border border-gray-300 rounded-sm"
+              className="outline-none w-full max-w-xl focus-visible:ring-0 md:px-4 md:py-2 p-1 border border-gray-300 rounded-sm"
             />
           </div>
           <div className="w-full space-y-1">
-            <Label htmlFor="email" className="text-md">
+            <Label htmlFor="email" className="md:text-md text-xs">
               Email
             </Label>
             <Input
@@ -69,11 +69,11 @@ const Login = () => {
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="outline-none w-full max-w-xl focus-visible:ring-0 px-4 py-2 border border-gray-300 rounded-sm"
+              className="outline-none w-full max-w-xl focus-visible:ring-0 md:px-4 md:py-2 p-1 border border-gray-300 rounded-sm"
             />
           </div>
           <div className="w-full space-y-1">
-            <Label htmlFor="password" className="text-md">
+            <Label htmlFor="password" className="md:text-md text-xs">
               Password
             </Label>
             <Input
@@ -81,24 +81,24 @@ const Login = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="outline-none w-full max-w-xl focus-visible:ring-0 px-4 py-2 border border-gray-300 rounded-sm"
+              className="outline-none w-full max-w-xl focus-visible:ring-0 md:px-4 md:py-2 p-1 border border-gray-300 rounded-sm"
             />
           </div>
           <div className="text-right w-full">
-            <p className="text-gray-800 hover:text-[#3B82F6] font-semibold hover:cursor-pointer text-sm">
+            <p className="text-gray-800 hover:text-[#3B82F6] font-semibold hover:cursor-pointer md:text-sm text-xs">
               Forgot your password?
             </p>
           </div>
           <div>
             <Button
-              className="bg-[#3B82F6] hover:cursor-pointer hover:bg-blue-400 px-8 py-3 font-semibold w-48"
+              className="bg-blue-700 hover:cursor-pointer hover:bg-blue-600 md:px-8 md:py-3 px-4 py-1 font-semibold w-48 shadow-[0px_0px_4px_2px_rgba(255,255,225,0.2)_inset] text-shadow-sm text-shadow-white/10 ring ring-white/20"
               size="lg"
             >
               Register
             </Button>
           </div>
           <div className="mt-2 w-full text-center font-semibold">
-            <p>
+            <p className="text-xs md:text-md">
               Don&apos;t have an account?{' '}
               <span
                 className="text-gray-800 hover:text-[#3B82F6] hover:cursor-pointer"

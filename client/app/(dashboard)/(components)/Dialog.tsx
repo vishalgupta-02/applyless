@@ -82,6 +82,20 @@ const Dialog = () => {
         notes: notes,
         salary: salary,
       }
+      if (
+        !body.company ||
+        !body.title ||
+        !body.currentStatus ||
+        !body.description ||
+        !body.jobUrl ||
+        !body.location ||
+        !body.notes ||
+        !body.salary
+      ) {
+        console.log('PLease fill all the fields')
+        toast.error('All fields are required')
+        return
+      }
       console.log('Form data before submitting the form', body)
       const result = await createNewJob({ token: usertoken, userData: body })
 

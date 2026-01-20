@@ -1,32 +1,32 @@
-import React from "react";
+import React from 'react'
 
 const featuresContent = [
   {
     id: 1,
-    icon: "Icon 1",
-    title: "Pipeline View",
+    icon: 'Icon 1',
+    title: 'Pipeline View',
     description:
       "See exactly where each application stands. No more 'wait, did I apply there?",
   },
   {
     id: 2,
-    icon: "Icon 2",
-    title: "Never Miss a Deadline",
-    description: "Track deadlines, interviews, and follow-ups automatically.",
+    icon: 'Icon 2',
+    title: 'Never Miss a Deadline',
+    description: 'Track deadlines, interviews, and follow-ups automatically.',
   },
   {
     id: 3,
-    icon: "Icon 3",
-    title: "Interview Ready",
+    icon: 'Icon 3',
+    title: 'Interview Ready',
     description:
-      "Store company research, questions, and prep notes all in one place.",
+      'Store company research, questions, and prep notes all in one place.',
   },
-];
+]
 
 const Features = () => {
   return (
     <div className="w-full h-screen max-h-full flex flex-col justify-center items-center gap-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-24">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:px-24 md:px-16 px-8">
         {featuresContent.map((feature) => (
           <div
             key={feature.id}
@@ -39,7 +39,7 @@ const Features = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Features;
+export default Features

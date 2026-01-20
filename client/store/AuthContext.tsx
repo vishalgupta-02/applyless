@@ -15,6 +15,8 @@ interface AuthContextType {
   setEditJob: (open: boolean) => void
   selectedJob: any | null
   setSelectedJob: (job: any) => void
+  newStatus: string
+  setNewStatus: (value: string) => void
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -30,6 +32,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [addJobDialogOpen, setAddJobDialogOpen] = useState<boolean>(false)
   const [editJob, setEditJob] = useState<boolean>(false)
   const [selectedJob, setSelectedJob] = useState<any | null>(null)
+  const [newStatus, setNewStatus] = useState<string>('')
 
   const navigate = useRouter()
 
@@ -77,6 +80,8 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     setEditJob: setEditJob,
     selectedJob: selectedJob,
     setSelectedJob: setSelectedJob,
+    newStatus: newStatus,
+    setNewStatus: setNewStatus,
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

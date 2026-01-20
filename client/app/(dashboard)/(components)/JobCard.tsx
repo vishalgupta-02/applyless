@@ -1,6 +1,7 @@
 'use client'
 
 import { deleteJob } from '@/app/api/delete-job'
+import { changeStatus } from '@/app/api/statusUpdate'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -13,7 +14,9 @@ import {
 import { useAuthContext } from '@/store/AuthContext'
 import { jobCardTypes } from '@/types/type'
 import { SquarePen, Trash2 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
+import { useState } from 'react'
 
 const JobCard = ({
   _id,
@@ -28,13 +31,43 @@ const JobCard = ({
   notes,
   description,
 }: jobCardTypes) => {
+  const navigate = useRouter()
   const { usertoken, setEditJob, setAddJobDialogOpen, setSelectedJob } =
     useAuthContext()
+  const [localStatus, setLocalStatus] = useState(currentStatus)
+
+  const changeJobStatus = async (newStatus: string) => {
+    try {
+      if (!_id) {
+        return
+      }
+      if (!usertoken) {
+        return
+      }
+      const result = await changeStatus({
+        id: _id,
+        token: usertoken,
+        status: newStatus,
+      })
+
+      console.log('Result in changing job status', result)
+      if (result.success) {
+        setLocalStatus(newStatus)
+        toast.success('Job status change successful')
+      } else {
+        toast.error('Job status change failed')
+        return
+      }
+    } catch (error) {
+      console.log('Error in changing job status', error)
+      toast.error('Error changing job status')
+    }
+  }
 
   const deleteHandle = async (id: string) => {
     try {
       const userConfirmation = window.confirm(
-        'Are you sure you want to delete this job'
+        'Are you sure you want to delete this job',
       )
       if (!userConfirmation) {
         return
@@ -54,13 +87,13 @@ const JobCard = ({
   return (
     <div className="space-y-3">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-700 tracking-tight">
+        <h1 className="text-3xl font-semibold text-gray-700 tracking-tight">
           {company}
         </h1>
         <div className="flex justify-center items-center gap-4">
           <Button
-            variant="outline"
-            className="cursor-pointer"
+            variant="secondary"
+            className="cursor-pointer border border-gray-400"
             onClick={() => {
               setSelectedJob({
                 _id,
@@ -79,14 +112,14 @@ const JobCard = ({
               setAddJobDialogOpen(true)
             }}
           >
-            <SquarePen className="w-4 h-4 text-blue-300" />
+            <SquarePen className="w-4 h-4 text-blue-700" />
           </Button>
           <Button
             variant="outline"
-            className="cursor-pointer"
+            className="cursor-pointer border border-gray-400"
             onClick={() => _id && deleteHandle(_id)}
           >
-            <Trash2 className="w-4 h-4 text-red-600" />
+            <Trash2 className="w-4 h-4 text-red-700" />
           </Button>
         </div>
       </div>
@@ -97,24 +130,47 @@ const JobCard = ({
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="lg" className="cursor-pointer">
-              {currentStatus}
+            <Button
+              variant="outline"
+              size="lg"
+              className="cursor-pointer border border-gray-400 hover:text-blue-600"
+            >
+              {localStatus}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuLabel>Current Status</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Applied</DropdownMenuItem>
-            <DropdownMenuItem>Screening</DropdownMenuItem>
-            <DropdownMenuItem>Interview</DropdownMenuItem>
-            <DropdownMenuItem>Offer</DropdownMenuItem>
-            <DropdownMenuItem>Rejected</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => changeJobStatus('Applied')}>
+              Applied
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => changeJobStatus('Screening')}>
+              Screening
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => changeJobStatus('Interview')}>
+              Interview
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => changeJobStatus('Offer')}>
+              Offer
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => changeJobStatus('Rejected')}>
+              Rejected
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div>
-        <p className="text-md">{notes}</p>
-        <p className="text-xs">{description}</p>
+      <div className="w-full flex justify-between items-center">
+        <div>
+          <p className="text-md">{notes}</p>
+          <p className="text-xs">{description}</p>
+        </div>
+        <Button
+          variant="link"
+          className="cursor-pointer hover:text-blue-600"
+          onClick={() => navigate.push(`/job/${_id}`)}
+        >
+          View Detail
+        </Button>
       </div>
     </div>
   )

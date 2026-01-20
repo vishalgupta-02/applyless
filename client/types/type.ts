@@ -1,3 +1,10 @@
+export type timeLineProps = [
+  {
+    status: string
+    date: string
+  },
+]
+
 export interface jobCardTypes {
   _id?: string
   company: string
@@ -10,6 +17,7 @@ export interface jobCardTypes {
   salary: number
   jobUrl: string
   description: string
+  timeline: timeLineProps
 }
 
 export interface formDataTypes {
