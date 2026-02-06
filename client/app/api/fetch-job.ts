@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from "axios";
 
 const fetchJob = async (token: string) => {
   try {
@@ -8,16 +8,16 @@ const fetchJob = async (token: string) => {
         headers: {
           Authorization: `bearer ${token}`,
         },
-      }
-    )
+      },
+    );
 
-    const data = response.data
+    const data = response.data;
 
-    return data
+    return data;
   } catch (error) {
-    console.error('Error in login api call')
-    return error
+    console.log("Error in login api call");
+    return error;
   }
-}
+};
 
-export { fetchJob }
+export { fetchJob };

@@ -1,0 +1,284 @@
+**Smart. Let's brainstorm BEFORE locking.**
+
+Let me give you features across categories: **User Value**, **Recruiter Attraction**, **Technical Impressiveness**, and **Competitive Edge**.
+
+---
+
+## Category 1: User Value (Makes App Actually Useful)
+
+### **Networking/Contact Management**
+- Track recruiters/contacts per company
+- Store emails, LinkedIn profiles, phone numbers
+- Notes on conversations
+- Reminder to follow up
+- "Who referred me" field
+
+**Why:** Job hunting is about relationships, not just applications
+
+---
+
+### **Application Materials Tracking**
+- Which resume version did you send?
+- Which cover letter?
+- Link to application submission confirmation
+- Track what you customized per job
+
+**Why:** Helps prep for interviews ("What did I tell them?")
+
+---
+
+### **Salary Negotiation Tracker**
+- Expected salary range
+- Actual offer amount
+- Benefits package notes
+- Comparison across offers
+- Negotiation history
+
+**Why:** People make bad salary decisions without data
+
+---
+
+### **Job Research Notes**
+- Company culture notes
+- Glassdoor ratings
+- News about company
+- Employee reviews
+- "Red flags" section
+
+**Why:** Remember why you did/didn't want to apply
+
+---
+
+### **Application Deadline Reminders**
+- Email/push notifications
+- "Apply by" dates
+- Follow-up reminders (1 week, 2 weeks after applying)
+- Interview prep reminders
+
+**Why:** People miss deadlines and forget to follow up
+
+---
+
+## Category 2: Recruiter Attraction (Shows Product Thinking)
+
+### **Analytics Dashboard**
+- Application success rate
+- Average time to response
+- Which companies ghost most
+- Best days to apply (data-driven)
+- Skills most in demand (from job descriptions)
+
+**Why:** Shows you think about data and insights
+
+---
+
+### **Export/Backup Features**
+- Export to CSV/PDF
+- Backup all data
+- Share reports with career counselors
+- Portfolio of applications
+
+**Why:** Shows you care about user data ownership
+
+---
+
+### **Collaboration Features**
+- Share job leads with friends
+- "Referred by" tracking
+- Community job board (optional)
+- Accountability partners
+
+**Why:** Shows understanding of social features
+
+---
+
+### **Mobile App (React Native)**
+- Quick job saves on the go
+- Push notifications
+- Offline mode
+- Native mobile experience
+
+**Why:** Shows you can build cross-platform
+
+---
+
+## Category 3: Technical Impressiveness (Shows Skill)
+
+### **AI Features (Beyond Matching)**
+- Cover letter generator (AI-powered)
+- Resume bullet point suggestions
+- Interview question predictions based on job description
+- Automatic skill gap analysis
+
+**Why:** AI/ML is hot right now
+
+---
+
+### **Real-time Collaboration**
+- WebSockets for live updates
+- Share application status with career coach
+- Real-time interview scheduling
+
+**Why:** Shows advanced tech skills
+
+---
+
+### **Advanced Search/Filtering**
+- Filter by status, date, location, salary
+- Save custom filters
+- Smart search (fuzzy matching)
+- Tag system
+
+**Why:** Shows database query optimization skills
+
+---
+
+### **API for Third-Party Integration**
+- Public API with documentation
+- Webhooks
+- Zapier integration
+- OAuth for external apps
+
+**Why:** Shows you understand API design beyond your own app
+
+---
+
+### **Browser Extension Enhancements**
+- Works on multiple job boards (LinkedIn, Indeed, Glassdoor, etc.)
+- Detects duplicate jobs
+- Auto-fills applications
+- Highlights jobs you've already applied to
+
+**Why:** Shows you can handle complex integrations
+
+---
+
+## Category 4: Competitive Edge (Unique Features)
+
+### **Application Success Predictor**
+- Based on your profile vs job requirements
+- "You have 73% chance of getting interview"
+- Historical data from other users (if public data)
+- Feedback loop (did prediction match reality?)
+
+**Why:** No one else is doing this
+
+---
+
+### **Automated Application Tracking**
+- Parse confirmation emails
+- Auto-update status from LinkedIn/Indeed
+- Scrape application portals for updates
+- Reduces manual data entry
+
+**Why:** Solves biggest pain point (keeping tracker updated)
+
+---
+
+### **Interview Prep Assistant**
+- Generate STAR method answers
+- Company-specific question bank
+- Mock interview timer
+- Record and review practice answers
+
+**Why:** Combines job tracking with interview prep
+
+---
+
+### **Network Graph Visualization**
+- Visual map of your connections
+- See which companies you have referrals at
+- Identify network gaps
+- LinkedIn integration
+
+**Why:** Unique, visual, impressive
+
+---
+
+### **Gamification**
+- Streaks for daily applications
+- Achievements ("Applied to 10 jobs!")
+- Leaderboards (if multi-user)
+- Motivation system
+
+**Why:** Makes job hunting less depressing
+
+---
+
+## Category 5: Monetization Potential (Shows Business Thinking)
+
+### **Premium Features**
+- Free: Basic tracking
+- Pro: AI matching, unlimited jobs
+- Enterprise: Team features for career services
+
+**Why:** Shows you think about business models
+
+---
+
+### **B2B Version**
+- For university career centers
+- Track all students' applications
+- Aggregate analytics
+- White-label option
+
+**Why:** Shows you understand different markets
+
+---
+
+## My Top 5 Recommendations (Add These)
+
+Based on **impact vs effort**:
+
+### **1. Analytics Dashboard** (Phase 3 or 4)
+- High value, medium effort
+- Visually impressive
+- Uses existing data
+- Shows data thinking
+
+### **2. Email Reminders** (Phase 4 or 5)
+- High value, medium effort
+- Actual utility
+- Shows you can work with email APIs
+- Users will actually use it
+
+### **3. Contact/Recruiter Tracking** (Phase 6)
+- High value, low-medium effort
+- Natural extension
+- Shows relationship data modeling
+
+### **4. Application Materials Versioning** (Phase 6)
+- Medium value, low effort
+- Practical feature
+- Easy to implement
+
+### **5. Export/Backup** (Phase 7)
+- Medium value, low effort
+- Good practice for data handling
+- Shows you respect user data
+
+---
+
+## Updated Suggested Roadmap
+
+**Phase 1:** ✅ Core app (done)  
+**Phase 2:** Chrome Extension (2 weeks)  
+**Phase 3:** Interview Tracking (1 week)  
+**Phase 4:** Analytics Dashboard + Email Reminders (2 weeks)  
+**Phase 5:** Resume Upload + AI Matching (3 weeks)  
+**Phase 6:** Contact Tracking + Application Materials (1-2 weeks)  
+**Phase 7:** Export/Backup + Polish (1 week)  
+
+**Total:** 10-12 weeks to feature-complete, impressive product
+
+---
+
+## The Question
+
+Look at all these options. Which ones excite you most?
+
+**Pick your top 3-5 features** you want to add beyond the current plan.
+
+I'll help you sequence them properly into the roadmap.
+
+**What catches your interest?**

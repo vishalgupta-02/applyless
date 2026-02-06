@@ -1,0 +1,28 @@
+const company = document.querySelector('a[href*="/company/"]')?.innerText
+
+const description = [...document.querySelectorAll("div")].find(d => d.innerText.includes("About the job"))?.innerText
+
+const jobLocation = const location =
+  [...document.querySelectorAll("span")]
+    .find(s =>
+      s.innerText.includes(",") &&
+      s.innerText.length < 60
+    )?.innerText?.trim();
+
+const jobHref = window.location.href
+
+const postedTime = 
+  [...document.querySelectorAll("span")]
+    .find(s =>
+      /day|week|hour|month/i.test(s.innerText)
+    )?.innerText?.trim();
+
+const jobId = window.location.href.match(/\/jobs\/view\/(\d+)/)?.[1] ||  window.location.href.match(/currentJobId=(\d+)/)?.[1]
+
+const jobTitle = document.title
+  .replace(/\s*\|.*$/, "")
+  .trim() 
+
+[Safe Side for Title] = .replace(/\s*\|\s*LinkedIn.*$/, "")   // remove "| LinkedIn"
+                        .replace(/\s+at\s+.+$/i, "")          // remove "at Company"
+                        .trim()
