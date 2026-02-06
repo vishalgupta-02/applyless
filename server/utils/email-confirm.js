@@ -126,7 +126,7 @@ const emailConfirmation = async (id) => {
   })
 
   if (error) {
-    return console.error({ error })
+    return console.log({ error })
   }
 
   const emailConfirmed = await SubsModel.findByIdAndUpdate(id, {
