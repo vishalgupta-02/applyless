@@ -34,23 +34,19 @@ const subsController = async (req, res) => {
         .status(500)
         .json({ success: false, message: 'Error while saving in DB' })
     }
-
-    if (!sendEmailConfirmation) {
+    console.log('Email error', sendEmailConfirmation)
+    if (sendEmailConfirmation) {
+      return res
+        .status(200)
+        .json({ success: true, message: 'Confirmation Email Sent' })
+    } else {
       return res
         .status(500)
-        .json({ success: false, message: 'Error while sending confirmation' })
+        .json({ success: false, message: 'Error while sending confirmation!' })
     }
-    // console.log('User email: ', userEmail)
-    // console.log('User email: ', userEmail.email)
-
-    return res.status(200).json({
-      success: true,
-      message: 'Successfully subscribed',
-      countSubs: newCount,
-    })
   } catch (error) {
     console.log('Error occurred in Subs Controller: ', error)
-    res
+    return res
       .status(500)
       .json({ success: false, message: 'Error while subscribing, try again!' })
   }

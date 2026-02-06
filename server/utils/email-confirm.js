@@ -4,17 +4,18 @@ import SubsModel from '../models/subscription.js'
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 const emailConfirmation = async (id) => {
-  const userEmail = await SubsModel.findById(id)
-  if (!userEmail) {
-    console.log('Error in resend function')
-    return
-  }
-  //   console.log('Email in resned function', userEmail.email)
-  const { data, error } = await resend.emails.send({
-    from: 'Chrono <onboarding@resend.dev>',
-    to: userEmail.email,
-    subject: "You're on the waitlist",
-    html: `
+  try {
+    const userEmail = await SubsModel.findById(id)
+    if (!userEmail) {
+      console.log('Error in resend function')
+      return
+    }
+
+    const { data, error } = await resend.emails.send({
+      from: 'Chrono <onboarding@resend.dev>',
+      to: userEmail.email ?? 'abhimanyug987@gmail.com',
+      subject: "You're on the waitlist",
+      html: `
     <!doctype html>
     <html lang="en">
       <head>
@@ -123,21 +124,28 @@ const emailConfirmation = async (id) => {
       </body>
     </html>    
       `,
-  })
+    })
 
-  if (error) {
-    return console.log({ error })
+    if (error) {
+      console.log('Resend API Error:', error)
+      return false
+    }
+
+    const emailConfirmed = await SubsModel.findByIdAndUpdate(id, {
+      confirmationSent: true,
+    })
+    console.log('Email confirmed', emailConfirmed)
+    if (!emailConfirmed) {
+      console.log('Database update failed')
+      return false
+    }
+
+    console.log({ data })
+    return true
+  } catch (error) {
+    console.log('Error in resend function', error)
+    return false
   }
-
-  const emailConfirmed = await SubsModel.findByIdAndUpdate(id, {
-    confirmationSent: true,
-  })
-  if (!emailConfirmed) {
-    return
-  }
-
-  console.log({ data })
-  return data
 }
 
 export default emailConfirmation
