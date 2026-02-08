@@ -16,12 +16,12 @@ const Navbar = () => {
     <div className='w-full md:sticky mx-auto lg:px-24 md:px-16 px-8 py-4 flex justify-between items-center relative'>
       <div className='flex justify-center items-center'>
         <div
-          className='text-3xl font-bold uppercase tracking-tighter cursor-pointer flex justify-center items-center gap-1'
+          className='text-xl font-bold tracking-tighter cursor-pointer flex justify-center items-center gap-1'
           onClick={() => navigate.push('/')}>
-          <p className='font-serif'>
-            Chr
-            <span className='text-blue-700 m-0 p-0'>o</span>
-            no.
+          <p className='font-serif capitalize'>
+            ap
+            <span className='text-blue-700 m-0 p-0'>p</span>
+            lyless
           </p>
         </div>
       </div>
