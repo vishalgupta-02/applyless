@@ -2,8 +2,10 @@ import { Route, Routes } from 'react-router-dom'
 import BetterSomething from './components/custom/BetterSomething'
 import LandingPage from './components/custom/Hero'
 import FeedbackWrapper from './components/custom/FeedbackForm'
+import { inject } from '@vercel/analytics'
 
 const App = () => {
+  inject()
   return (
     <Routes>
       <Route path='/' element={<LandingPage />} />
