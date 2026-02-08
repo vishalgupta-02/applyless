@@ -20,6 +20,7 @@ app.use(
       'https://chrono-rust.vercel.app',
       'http://localhost:5173',
       'https://chrono-waitlist.vercel.app',
+      'https://applyless-waitlist.vercel.app',
     ],
     credentials: true,
   }),
