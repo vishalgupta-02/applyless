@@ -5,10 +5,20 @@ import MockupBody from './mockup/MockupBody'
 import MockupNavbar from './mockup/MockupNavbar'
 import { useMainContext } from '@/context/MainContext'
 import { CrowdCanvas } from '../ui/crowd-canvas'
+import { useEffect } from 'react'
 
 const BetterSomething = () => {
   const { subscribed } = useMainContext()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!subscribed) {
+      const timer = setTimeout(() => {
+        navigate('/')
+      }, 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [subscribed, navigate])
 
   if (subscribed) {
     return (

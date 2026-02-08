@@ -5,16 +5,44 @@ interface MainContextType {
   setSubscribed: (value: boolean) => void
 }
 
-export const MainContext = createContext<MainContextType | undefined>(undefined)
+interface StoredData {
+  value: boolean
+  timestamp: number
+}
+
+const EXPIRATION_TIME = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
+
+const isDataExpired = (data: StoredData): boolean => {
+  const now = Date.now()
+  return now - data.timestamp > EXPIRATION_TIME
+}
+
+const MainContext = createContext<MainContextType | undefined>(undefined)
 
 const MainContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [subscribed, setSubscribed] = useState<boolean>(() => {
     const saved = localStorage.getItem('subscribed')
-    return saved ? JSON.parse(saved) : false
+    if (!saved) return false
+
+    try {
+      const data: StoredData = JSON.parse(saved)
+      if (isDataExpired(data)) {
+        localStorage.removeItem('subscribed')
+        return false
+      }
+      return data.value
+    } catch {
+      localStorage.removeItem('subscribed')
+      return false
+    }
   })
 
   useEffect(() => {
-    localStorage.setItem('subscribed', JSON.stringify(subscribed))
+    const data: StoredData = {
+      value: subscribed,
+      timestamp: Date.now(),
+    }
+    localStorage.setItem('subscribed', JSON.stringify(data))
   }, [subscribed])
 
   const value: MainContextType = {

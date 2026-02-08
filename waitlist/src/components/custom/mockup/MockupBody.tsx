@@ -4,49 +4,49 @@ import type React from 'react'
 
 const MockupBody = () => {
   return (
-    <div className='w-full flex-1 bg-gray-50 flex justify-center items-start py-12'>
-      <div className='w-full max-w-7xl px-6'>
+    <div className='w-full flex-1 bg-gray-50 flex justify-center items-start py-6 md:py-12 px-4'>
+      <div className='w-full max-w-7xl'>
         {/* Header */}
-        <div className='text-center mb-8'>
-          <h1 className='text-2xl font-semibold text-gray-900'>
+        <div className='text-center mb-6 md:mb-8'>
+          <h1 className='text-xl md:text-2xl font-semibold text-gray-900'>
             Hang tight. Your job tracker is coming together!
           </h1>
-          <p className='text-gray-500 mt-2'>
+          <p className='text-xs md:text-sm text-gray-500 mt-2'>
             Your job search lives here. We're setting up your workspace.
           </p>
         </div>
 
         {/* Main Card */}
-        <div className='bg-white h-5/6 rounded-xl shadow-sm border border-gray-200 p-6 flex gap-6'>
+        <div className='bg-white rounded-xl shadow-sm border border-gray-200 p-4 md:p-6 flex flex-col lg:flex-row gap-4 md:gap-6'>
           {/* Left Section */}
-          <div className='flex-1'>
+          <div className='flex-1 min-w-0'>
             {/* Tabs */}
-            <div className='flex gap-6 border-b border-gray-200 pb-4 mb-6'>
+            <div className='flex gap-4 md:gap-6 border-b border-gray-200 pb-3 md:pb-4 mb-4 md:mb-6 overflow-x-auto'>
               <Tab label='Applications' />
               <Tab label='Interviews' />
               <Tab label='Follow-ups' />
             </div>
 
             {/* Empty States */}
-            <div className='grid grid-cols-3 gap-4 mb-6'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 mb-4 md:mb-6'>
               <EmptyCard />
               <EmptyCard />
               <EmptyCard />
             </div>
 
             {/* Helper Text */}
-            <p className='text-md text-gray-500 mb-4 mt-12 text-center'>
+            <p className='text-sm md:text-base text-gray-500 mb-4 mt-8 md:mt-12 text-center'>
               Most job searches fall apart because applications, follow-ups, and
               notes end up scattered.
             </p>
 
             {/* Role Input */}
-            <div className='flex items-center gap-4 mt-12 mb-2 justify-center'>
-              <span className='text-sm font-medium text-gray-700'>
+            <div className='flex flex-col sm:flex-row items-center gap-2 sm:gap-4 mt-8 md:mt-12 mb-2 justify-center'>
+              <span className='text-xs sm:text-sm font-medium text-gray-700 whitespace-nowrap'>
                 Tell us one thing:
               </span>
 
-              <div className='flex items-center border border-gray-300 rounded-lg px-4 py-2 w-64 justify-between'>
+              <div className='flex items-center border border-gray-300 rounded-lg px-3 md:px-4 py-2 w-full sm:w-64 justify-between text-sm'>
                 <span className='text-gray-900'>Frontend Developer</span>
                 <span className='text-green-600 font-semibold'>✓</span>
               </div>
@@ -58,7 +58,7 @@ const MockupBody = () => {
           </div>
 
           {/* Right Sidebar */}
-          <div className='w-64 flex flex-col gap-4'>
+          <div className='w-full lg:w-64 flex flex-col gap-3 md:gap-4'>
             {/* Today */}
             <SidebarCard title='Today'>
               <p className='text-sm text-gray-500'>No follow-ups yet</p>
@@ -84,7 +84,7 @@ const MockupBody = () => {
         </div>
 
         {/* Footer */}
-        <p className='text-center text-sm text-gray-400 mt-6'>
+        <p className='text-center text-xs md:text-sm text-gray-400 mt-4 md:mt-6'>
           This space is reserved for you. Come back here when you get access.
         </p>
       </div>
