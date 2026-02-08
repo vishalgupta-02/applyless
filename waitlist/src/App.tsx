@@ -1,14 +1,15 @@
-import Hero from './components/custom/Hero'
-import { CrowdCanvas } from './components/ui/crowd-canvas'
+import { Route, Routes } from 'react-router-dom'
+import BetterSomething from './components/custom/BetterSomething'
+import LandingPage from './components/custom/Hero'
+import FeedbackWrapper from './components/custom/FeedbackForm'
 
 const App = () => {
   return (
-    <div className='relative h-screen w-screen overflow-hidden'>
-      <div className='absolute inset-0 z-50 w-full'>
-        <Hero />
-      </div>
-      <CrowdCanvas src='/all-peeps.png' rows={7} cols={15} />
-    </div>
+    <Routes>
+      <Route path='/' element={<LandingPage />} />
+      <Route path='/better' element={<BetterSomething />} />
+      <Route path='/feedback' element={<FeedbackWrapper />} />
+    </Routes>
   )
 }
 
